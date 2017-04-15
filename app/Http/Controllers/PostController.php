@@ -44,15 +44,46 @@ class PostController extends Controller
     	return redirect() ->route('post.index')->withSuccess('Post Created');
     }
 
-    public function editPost(){
+    public function editPost($id){
 
+    	$varpost=Post::where([
+    		['id','=',$id], 
+    		['user_id','=',Auth::user()->id]
+    		])->first();
 
+    	return view('editform')->withId($id)->withPost($varpost);
+    }
+    
+    public function updatePost(Request $request, $id){
+
+    	$this->validate($request, [
+
+    			'title' => 'required|max:20',
+    			'story' => 'required|max:100',
+    		]);
+
+    	$varpost=Post::where([
+    		['id','=',$id], 
+    		['user_id','=',Auth::user()->id]
+    		])->first();
+
+    	if ($varpost) {
+    		# code...
+    		$varpost->title=$request->input('title');
+    		$varpost->story=$request->input('story');
+    		$varpost->save();
+
+    		return redirect()->route('post.index')->withSuccess('Post Successfully Update');
+    	}
+    	else{
+    		return redirect()->route('post.index')->withSuccess('Cannot Update Post');
+    	}
     }
 
     public function deletePost($id){
 
     	$varpost=Post::find($id);
-    	// $varpost=Post::where([['id','=',$id],['user_id','=',Auth::user()->id]])->firdt();
+    	// $varpost=Post::where([['id','=',$id],['user_id','=',Auth::user()->id]])->first();
 
     	if ($varpost) {
     		# code...

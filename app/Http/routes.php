@@ -35,6 +35,8 @@ Route::post('/post/create/save', ['as' => 'post.create.save', 'uses' => 'PostCon
 
 Route::get('/post/edit/{id}', ['as' => 'post.edit', 'uses' => 'PostController@editPost']);
 
+Route::post('/post/edit/update/{id}', ['as' => 'post.edit.update', 'uses' => 'PostController@updatePost']);
+
 Route::get('/post/delete/{id}', ['as' => 'post.delete', 'uses' => 'PostController@deletePost']);
 
 Route::resource('polish','PolishController');
