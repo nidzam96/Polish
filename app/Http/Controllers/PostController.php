@@ -17,7 +17,11 @@ class PostController extends Controller
     }
     public function showAllPosts() {
 
-    	$varpost=Post::all();
+    	// $varpost=Post::all();
+    	$varpost=Post::where([
+    		['user_id''=',Auth::user()->id]
+    	])->get();
+    	
     	return view('posts')->with('postview', $varpost);
     	// return view('posts')->withPostview($varpost);
     }
