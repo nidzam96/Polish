@@ -28,6 +28,7 @@
                     <table class="table">
                         <thead>
                             <th>ID</th>
+                            <th>User</th>
                             <th>Title</th>
                             <th>Story</th>
                             <th>Created</th>
@@ -38,6 +39,7 @@
                         @foreach ($postview as $post)
                             <tr>
                                 <td>{{ $post->id }}</td>
+                                <td>{{ Auth::user()->name}}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->story }}</td>
                                 <td>{{ $post->created_at }}</td>
