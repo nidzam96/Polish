@@ -27,6 +27,14 @@ Route::get('/contact', 'PagesController@contact');
 
 Route::get('/admin/dashboard', 'AdminController@login');
 
+Route::post('/post/search', [ 'as' => 'post.search', 'uses' => 'PostController@searchPosts']);
+
+Route::get('post/searchpost', ['as' => 'post.search', 'uses' => 'PostController@showAllPosts']);
+
+Route::get('/admin/edit/{id}', ['as' => 'admin.edit', 'uses' => 'AdminController@editProfile']);
+
+Route::post('/admin/edit/update/{id}', ['as' => 'admin.edit.update', 'uses' => 'AdminController@updProfile']);
+
 Route::get('/post', ['as' => 'post.index', 'uses' => 'PostController@showAllPosts']);
 
 Route::get('/post/create', ['as' => 'post.create', 'uses' => 'PostController@createPost']);
@@ -34,6 +42,8 @@ Route::get('/post/create', ['as' => 'post.create', 'uses' => 'PostController@cre
 Route::post('/post/create/save', ['as' => 'post.create.save', 'uses' => 'PostController@savePost']);
 
 Route::get('/post/edit/{id}', ['as' => 'post.edit', 'uses' => 'PostController@editPost']);
+
+Route::post('/post/edit/update/{id}', ['as' => 'post.edit.update', 'uses' => 'PostController@updatePost']);
 
 Route::get('/post/delete/{id}', ['as' => 'post.delete', 'uses' => 'PostController@deletePost']);
 
