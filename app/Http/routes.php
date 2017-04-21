@@ -27,6 +27,10 @@ Route::get('/contact', 'PagesController@contact');
 
 Route::get('/admin/dashboard', 'AdminController@login');
 
+Route::post('/post/search', [ 'as' => 'post.search', 'uses' => 'PostController@searchPosts']);
+
+Route::get('post/searchpost', ['as' => 'post.search', 'uses' => 'PostController@showAllPosts']);
+
 Route::get('/admin/edit/{id}', ['as' => 'admin.edit', 'uses' => 'AdminController@editProfile']);
 
 Route::post('/admin/edit/update/{id}', ['as' => 'admin.edit.update', 'uses' => 'AdminController@updProfile']);
