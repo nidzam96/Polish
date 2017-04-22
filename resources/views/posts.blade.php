@@ -75,6 +75,7 @@
                             <th>User ID</th>
                             <th>Title</th>
                             <th>Story</th>
+                            <th>Comment List</th>
                             <th>Created</th>
                             <th>Updated</th>
                             <th>Action</th>
@@ -87,6 +88,13 @@
                                 <td>{{ $post->user->name }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->story }}</td>
+                                <td>
+                                    <ul>
+                                    @foreach ($post->comments as $comments)
+                                        <li>{{ $comments->comment_description}}</li>
+                                    @endforeach
+                                    </ul>
+                                </td>
                                 <td>{{ $post->created_at }}</td>
                                 <td>{{ $post->updated_at }}</td>
                                 <td>
